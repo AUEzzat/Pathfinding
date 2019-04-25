@@ -13,7 +13,6 @@ public class BFS : PathFinding
 
         while (openSet.Count > 0)
         {
-
             Node node = openSet.Dequeue();
             closedSet.Add(node);
 
@@ -29,10 +28,11 @@ public class BFS : PathFinding
                     continue;
                 }
 
-                neighbour.parent = node;
-
                 if (!openSet.Contains(neighbour))
+                {
+                    neighbour.parent = node;
                     openSet.Enqueue(neighbour);
+                }
             }
         }
 

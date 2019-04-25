@@ -9,6 +9,7 @@ public class AStar : PathFinding
         List<Node> openSet = new List<Node>();
         closedSet = new HashSet<Node>();
 
+        startNode.gCost = 0;
         openSet.Add(startNode);
 
         while (openSet.Count > 0)
@@ -16,10 +17,9 @@ public class AStar : PathFinding
             Node node = openSet[0];
             for (int i = 1; i < openSet.Count; i++)
             {
-                if (openSet[i].fCost < node.fCost || openSet[i].fCost == node.fCost)
+                if (openSet[i].fCost < node.fCost)
                 {
-                    if (openSet[i].hCost < node.hCost)
-                        node = openSet[i];
+                    node = openSet[i];
                 }
             }
 
@@ -38,11 +38,13 @@ public class AStar : PathFinding
                     continue;
                 }
 
-                int newCostToNeighbour = node.gCost + GetDistance(node, neighbour);
-                if (newCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
+                int newGCostToNeighbour = node.gCost + GetDistance(node, neighbour);
+                int newHCostToNeighbour = GetDistance(neighbour, targetNode);
+
+                if (newGCostToNeighbour + newHCostToNeighbour < neighbour.fCost || !openSet.Contains(neighbour))
                 {
-                    neighbour.gCost = newCostToNeighbour;
-                    neighbour.hCost = GetDistance(neighbour, targetNode);
+                    neighbour.gCost = newGCostToNeighbour;
+                    neighbour.hCost = newHCostToNeighbour;
                     neighbour.parent = node;
 
                     if (!openSet.Contains(neighbour))

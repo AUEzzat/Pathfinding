@@ -37,10 +37,10 @@ public class Greedy : PathFinding
                     continue;
                 }
 
-                int newCostToNeighbour = node.gCost + GetDistance(node, neighbour);
-                if (newCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
+                int newCostToNeighbour = GetDistance(neighbour, targetNode);
+                if (newCostToNeighbour < neighbour.hCost || !openSet.Contains(neighbour))
                 {
-                    neighbour.hCost = GetDistance(neighbour, targetNode);
+                    neighbour.hCost = newCostToNeighbour;
                     neighbour.parent = node;
 
                     if (!openSet.Contains(neighbour))

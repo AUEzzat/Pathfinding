@@ -16,9 +16,9 @@ public class Dijkstra : PathFinding
             Node node = openSet[0];
             for (int i = 1; i < openSet.Count; i++)
             {
-                if (openSet[i].fCost < node.fCost || openSet[i].fCost == node.fCost)
+                if (openSet[i].gCost < node.gCost)
                 {
-                        node = openSet[i];
+                    node = openSet[i];
                 }
             }
 

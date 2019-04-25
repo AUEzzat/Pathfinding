@@ -29,10 +29,11 @@ public class DFS : PathFinding
                     continue;
                 }
 
-                neighbour.parent = node;
-
                 if (!openSet.Contains(neighbour))
+                {
+                    neighbour.parent = node;
                     openSet.Push(neighbour);
+                }
             }
         }
 

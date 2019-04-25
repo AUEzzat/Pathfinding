@@ -17,7 +17,8 @@ public class Node {
 		worldPosition = _worldPos;
 		gridX = _gridX;
 		gridY = _gridY;
-	}
+        gCost = int.MaxValue;
+    }
 
 	public int fCost {
 		get {
