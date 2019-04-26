@@ -38,12 +38,12 @@ public class AStar : PathFinding
                     continue;
                 }
 
-                int newGCostToNeighbour = node.gCost + GetDistance(node, neighbour);
+                float newGCostToNeighbour = node.gCost + GetDistance(node, neighbour);
                 int newHCostToNeighbour = GetDistance(neighbour, targetNode);
 
                 if (newGCostToNeighbour + newHCostToNeighbour < neighbour.fCost || !openSet.Contains(neighbour))
                 {
-                    neighbour.gCost = newGCostToNeighbour;
+                    neighbour.gCost = newGCostToNeighbour + neighbour.pathCost;
                     neighbour.hCost = newHCostToNeighbour;
                     neighbour.parent = node;
 

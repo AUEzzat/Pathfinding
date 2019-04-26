@@ -8,7 +8,8 @@ public class Node {
 	public int gridX;
 	public int gridY;
 
-	public int gCost;
+    public float pathCost;
+	public float gCost;
 	public int hCost;
 	public Node parent;
 	
@@ -18,9 +19,10 @@ public class Node {
 		gridX = _gridX;
 		gridY = _gridY;
         gCost = int.MaxValue;
+        pathCost = Random.value * 0.5f + 0.5f;
     }
 
-	public int fCost {
+	public float fCost {
 		get {
 			return gCost + hCost;
 		}

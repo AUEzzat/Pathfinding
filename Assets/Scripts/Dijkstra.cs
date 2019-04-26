@@ -9,6 +9,7 @@ public class Dijkstra : PathFinding
         List<Node> openSet = new List<Node>();
         closedSet = new HashSet<Node>();
 
+        startNode.gCost = 0;
         openSet.Add(startNode);
 
         while (openSet.Count > 0)
@@ -37,10 +38,10 @@ public class Dijkstra : PathFinding
                     continue;
                 }
 
-                int newCostToNeighbour = node.gCost + GetDistance(node, neighbour);
+                float newCostToNeighbour = node.gCost + GetDistance(node, neighbour);
                 if (newCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
                 {
-                    neighbour.gCost = newCostToNeighbour;
+                    neighbour.gCost = newCostToNeighbour + neighbour.pathCost;
                     neighbour.parent = node;
 
                     if (!openSet.Contains(neighbour))

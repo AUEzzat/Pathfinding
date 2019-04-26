@@ -83,12 +83,19 @@ public class Grid : MonoBehaviour
         {
             foreach (Node n in grid)
             {
-                Gizmos.color = (n.walkable) ? Color.white : Color.red;
+
+                if (n.walkable)
+                {
+                    Gizmos.color = new Color(n.pathCost, n.pathCost, 0);
+                }
+                else
+
+                    Gizmos.color = Color.red;
                 if (path != null)
                     if (path.Contains(n))
                         Gizmos.color = Color.black;
                     else if (@checked.Contains(n))
-                        Gizmos.color = Color.gray;
+                        Gizmos.color = new Color(n.pathCost, n.pathCost, .5f);
                 Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
             }
         }
